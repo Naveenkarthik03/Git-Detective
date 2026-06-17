@@ -2,7 +2,7 @@
 
 Git-Detective is an AI-powered GitHub repository analysis tool that helps developers understand unfamiliar codebases quickly.
 
-It can clone repositories, analyze files, build dependency graphs, and answer questions about the repository using AI.
+It can clone repositories, analyze files, build dependency graphs, answer repository questions using AI, generate documentation, and perform basic code reviews.
 
 ---
 
@@ -16,11 +16,13 @@ Scan and list project files
 
 Build dependency graphs
 
-Understand file relationships
-
 AI-powered repository Q&A
 
-Summarize repositories
+Generate architecture diagrams
+
+Generate project documentation
+
+Perform code reviews
 
 ---
 
@@ -32,6 +34,7 @@ Summarize repositories
 - NetworkX
 - Google Gemini API
 - Python Dotenv
+- Matplotlib
 
 ---
 
@@ -61,7 +64,15 @@ AI Question Answering
 
 ↓
 
-Repository Summary
+Generate Architecture Diagram
+
+↓
+
+Generate Documentation
+
+↓
+
+Perform Code Review
 
 ---
 
@@ -73,6 +84,36 @@ Repository Summary
 - Which files interact with GitHub?
 - What is the workflow of this project?
 - Summarize this repository in 5 bullet points
+
+---
+
+## Project Structure
+
+```text
+Git-Detective/
+
+README.md
+requirements.txt
+.gitignore
+
+main.py
+parser.py
+utils.py
+
+dependency_graph.py
+
+repo_reader.py
+ai_engine.py
+
+architecture_diagram.py
+
+documentation_generator.py
+
+code_review.py
+
+PROJECT_DOCUMENTATION.md
+architecture_diagram.png
+```
 
 ---
 
@@ -93,6 +134,27 @@ Repository Summary
 - Read repository files
 - Ask questions about the codebase
 - Generate repository summaries
+
+### Phase 4 - Architecture Diagram
+
+- Visualize project architecture
+- Display file relationships
+
+### Phase 5 - Documentation Generator
+
+- Generate repository documentation
+- Analyze project files
+
+### Phase 6 - Code Review Assistant
+
+- Analyze code quality
+- Detect large files
+- Count imports
+- Detect TODO comments
+
+### Phase 7 - Deployment
+
+- Deploy Git-Detective to the web
 
 ---
 
@@ -116,11 +178,33 @@ Open:
 http://127.0.0.1:8000/docs
 ```
 
-Analyze a repository and then run:
+Analyze a repository.
+
+Then run:
 
 ```bash
 python ai_engine.py
 ```
+
+Optional tools:
+
+```bash
+python architecture_diagram.py
+
+python documentation_generator.py
+
+python code_review.py
+```
+
+---
+
+## Future Improvements
+
+- Better AI explanations
+- Support more programming languages
+- Export reports as PDF
+- Interactive dashboard
+- One-click deployment
 
 ---
 
