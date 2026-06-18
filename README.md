@@ -89,22 +89,6 @@ Display Results
 
 ---
 
-## Screenshots
-
-### Home Page
-
-(Add screenshot here)
-
-### FastAPI Repository Analysis
-
-(Add screenshot here)
-
-### CricAnalytics Repository Analysis
-
-(Add screenshot here)
-
----
-
 ## Project Structure
 
 ```text
