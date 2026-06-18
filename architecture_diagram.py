@@ -1,72 +1,131 @@
+import os
+
+import matplotlib
+
+matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
+
 import networkx as nx
 
+from dependency_graph import build_graph
 
-def generate_diagram():
 
-    graph = nx.DiGraph()
+# ---------------------------------
+# Generate diagram
+# ---------------------------------
+def generate_diagram(repo_path):
 
-    # Main application flow
-    graph.add_edge("dependency_graph.py", "main.py")
+    graph = build_graph(
+        repo_path
+    )
 
-    graph.add_edge("main.py", "parser.py")
-    graph.add_edge("main.py", "utils.py")
+    if len(graph.nodes()) == 0:
 
-    # AI flow
-    graph.add_edge("ai_engine.py", "repo_reader.py")
+        return None
 
-    plt.figure(figsize=(10, 7))
+    os.makedirs(
 
-    pos = {
-        "dependency_graph.py": (0, 2),
+        "static",
 
-        "main.py": (0, 1),
+        exist_ok=True
 
-        "parser.py": (-1, 0),
+    )
 
-        "utils.py": (1, 0),
+    plt.figure(
 
-        "ai_engine.py": (0, -1),
+        figsize=(16, 10)
 
-        "repo_reader.py": (0, -2)
-    }
+    )
+
+    pos = nx.spring_layout(
+
+        graph,
+
+        k=2.5,
+
+        iterations=100,
+
+        seed=42
+
+    )
 
     nx.draw(
+
         graph,
+
         pos,
 
         with_labels=True,
 
-        node_size=5000,
+        node_size=7000,
 
         node_color="#90EE90",
 
-        font_size=11,
+        edge_color="gray",
+
+        font_size=10,
 
         font_weight="bold",
 
         arrows=True,
 
-        arrowsize=20
+        arrowsize=25,
+
+        width=2
+
     )
 
     plt.title(
-        "Git-Detective Architecture Diagram",
+
+        "Repository Architecture Diagram",
+
         fontsize=16
+
     )
 
-    plt.axis("off")
+    plt.axis(
+
+        "off"
+
+    )
 
     plt.tight_layout()
 
-    plt.savefig(
-        "architecture_diagram.png",
-        dpi=300
+    output_file = (
+
+        "static/architecture_diagram.png"
+
     )
 
-    print("Architecture diagram saved successfully.")
+    plt.savefig(
+
+        output_file,
+
+        dpi=300,
+
+        bbox_inches="tight"
+
+    )
+
+    plt.close()
+
+    print(
+
+        f"{output_file} generated successfully."
+
+    )
+
+    return output_file
 
 
+# ---------------------------------
+# Test
+# ---------------------------------
 if __name__ == "__main__":
 
-    generate_diagram()
+    generate_diagram(
+
+        "temp_repo"
+
+    )

@@ -1,31 +1,41 @@
 import os
 
 from dotenv import load_dotenv
+
 from google import genai
 
 from repo_reader import read_repository
 
 
-# ---------------------------------
-# Load API Key
-# ---------------------------------
+# ---------------------------
+# Load API key
+# ---------------------------
 load_dotenv()
 
 client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
+
+    api_key=os.getenv(
+
+        "GEMINI_API_KEY"
+
+    )
+
 )
 
 
-# ---------------------------------
-# General AI Questions
-# ---------------------------------
+# ---------------------------
+# General AI
+# ---------------------------
 def ask_ai(question):
 
     try:
 
         response = client.models.generate_content(
+
             model="gemini-2.5-flash-lite",
+
             contents=question
+
         )
 
         return response.text
@@ -35,21 +45,94 @@ def ask_ai(question):
         return f"Gemini Error: {e}"
 
 
-# ---------------------------------
-# Repository Questions
-# ---------------------------------
-def ask_repo(question):
+# ---------------------------
+# Repository Summary
+# ---------------------------
+def generate_summary():
 
-    repo_content = read_repository("temp_repo")
+    repo_content = read_repository(
+
+        "temp_repo"
+
+    )
 
     if not repo_content:
 
-        return "No Python files found inside temp_repo."
+        return "No repository found."
 
     prompt = f"""
-You are an AI code assistant.
 
-Repository content:
+Repository:
+
+{repo_content}
+
+Instructions:
+
+Return ONLY these 5 sections.
+
+Project Purpose:
+
+Maximum 2 lines.
+
+Main Files:
+
+Maximum 2 lines.
+
+Workflow:
+
+Maximum 2 lines.
+
+Technologies Used:
+
+Maximum 2 lines.
+
+Key Features:
+
+Maximum 2 lines.
+
+Rules:
+
+- Keep total response under 150 words.
+
+- Do not write paragraphs.
+
+- Keep each section concise.
+
+- Do not repeat information.
+
+"""
+
+    try:
+
+        response = client.models.generate_content(
+
+            model="gemini-2.5-flash-lite",
+
+            contents=prompt
+
+        )
+
+        return response.text
+
+    except Exception as e:
+
+        return f"Gemini Error: {e}"
+
+
+# ---------------------------
+# Ask repository questions
+# ---------------------------
+def ask_repo(question):
+
+    repo_content = read_repository(
+
+        "temp_repo"
+
+    )
+
+    prompt = f"""
+
+Repository:
 
 {repo_content}
 
@@ -57,19 +140,18 @@ Question:
 
 {question}
 
-Instructions:
+Answer simply.
 
-- Answer clearly.
-- Explain in simple words.
-- Mention file names when necessary.
-- Use bullet points if appropriate.
 """
 
     try:
 
         response = client.models.generate_content(
+
             model="gemini-2.5-flash-lite",
+
             contents=prompt
+
         )
 
         return response.text
@@ -79,13 +161,13 @@ Instructions:
         return f"Gemini Error: {e}"
 
 
-# ---------------------------------
+# ---------------------------
 # Test
-# ---------------------------------
+# ---------------------------
 if __name__ == "__main__":
 
-    answer = ask_repo(
-        "Summarize this repository in 5 bullet points"
-    )
+    print(
 
-    print(answer)
+        generate_summary()
+
+    )
