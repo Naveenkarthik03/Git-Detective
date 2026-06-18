@@ -1,5 +1,8 @@
-temp_repo/
-venv/
 __pycache__/
+venv/
+temp_repo/
+
 *.pyc
-.env
+
+static/architecture_diagram.png
+static/PROJECT_DOCUMENTATION.md
