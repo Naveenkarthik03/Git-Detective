@@ -1,45 +1,57 @@
 # Git-Detective
 
-Git-Detective is an AI-powered GitHub repository analysis tool that helps developers understand unfamiliar codebases quickly.
+AI-powered GitHub Repository Analyzer built using FastAPI and Google Gemini API.
 
-It can clone repositories, analyze files, build dependency graphs, answer repository questions using AI, generate documentation, and perform basic code reviews.
+Git-Detective helps developers quickly understand unfamiliar repositories by automatically generating architecture diagrams, documentation, AI summaries, and code reviews.
 
 ---
 
 ## Features
 
-Analyze GitHub repositories
-
-Clone repositories automatically
-
-Scan and list project files
-
-Build dependency graphs
-
-AI-powered repository Q&A
-
-Generate architecture diagrams
-
-Generate project documentation
-
-Perform code reviews
+- Analyze public GitHub repositories
+- Clone repositories automatically
+- Scan and list project files
+- Build dependency graphs
+- Generate architecture diagrams
+- Generate AI summaries
+- Generate downloadable documentation
+- Perform code reviews
+- Display repository insights in a clean web interface
 
 ---
 
 ## Tech Stack
 
+### Backend
+
 - Python
 - FastAPI
-- GitPython
-- NetworkX
+
+### AI
+
 - Google Gemini API
-- Python Dotenv
+
+### Visualization
+
+- NetworkX
 - Matplotlib
+
+### Repository Analysis
+
+- GitPython
+- AST
+
+### Frontend
+
+- HTML
+- CSS
+- JavaScript
 
 ---
 
 ## Project Workflow
 
+```text
 GitHub Repository URL
 
 ↓
@@ -48,23 +60,19 @@ Clone Repository
 
 ↓
 
-Scan Files
+Scan Repository Files
 
 ↓
 
-Build Dependency Graph
-
-↓
-
-Read Repository Files
-
-↓
-
-AI Question Answering
+Analyze Dependencies
 
 ↓
 
 Generate Architecture Diagram
+
+↓
+
+Generate AI Summary
 
 ↓
 
@@ -74,16 +82,26 @@ Generate Documentation
 
 Perform Code Review
 
+↓
+
+Display Results
+```
+
 ---
 
-## Example Questions
+## Screenshots
 
-- Explain what `main.py` does
-- Explain `parser.py`
-- Explain `utils.py`
-- Which files interact with GitHub?
-- What is the workflow of this project?
-- Summarize this repository in 5 bullet points
+### Home Page
+
+(Add screenshot here)
+
+### FastAPI Repository Analysis
+
+(Add screenshot here)
+
+### CricAnalytics Repository Analysis
+
+(Add screenshot here)
 
 ---
 
@@ -92,81 +110,70 @@ Perform Code Review
 ```text
 Git-Detective/
 
-README.md
-requirements.txt
-.gitignore
+static/
+templates/
 
 main.py
 parser.py
 utils.py
 
 dependency_graph.py
-
-repo_reader.py
-ai_engine.py
-
 architecture_diagram.py
 
 documentation_generator.py
 
+ai_engine.py
+
+repo_reader.py
+
 code_review.py
 
-PROJECT_DOCUMENTATION.md
-architecture_diagram.png
+requirements.txt
+
+README.md
+
+render.yaml
 ```
 
 ---
 
-## Project Progress
+## Installation
 
-### Phase 1 - Repository Parser
+### Clone Repository
 
-- Clone GitHub repositories
-- Scan repository files
+```bash
+git clone https://github.com/your-username/Git-Detective.git
 
-### Phase 2 - Dependency Graph
+cd Git-Detective
+```
 
-- Analyze Python imports
-- Build file relationships
+### Create Virtual Environment
 
-### Phase 3 - AI Repository Q&A
+```bash
+python -m venv venv
+```
 
-- Read repository files
-- Ask questions about the codebase
-- Generate repository summaries
+### Activate Environment
 
-### Phase 4 - Architecture Diagram
+Mac/Linux
 
-- Visualize project architecture
-- Display file relationships
+```bash
+source venv/bin/activate
+```
 
-### Phase 5 - Documentation Generator
+Windows
 
-- Generate repository documentation
-- Analyze project files
+```bash
+venv\Scripts\activate
+```
 
-### Phase 6 - Code Review Assistant
-
-- Analyze code quality
-- Detect large files
-- Count imports
-- Detect TODO comments
-
-### Phase 7 - Deployment
-
-- Deploy Git-Detective to the web
-
----
-
-## How to Run
-
-Install dependencies:
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run FastAPI:
+### Run Application
 
 ```bash
 uvicorn main:app --reload
@@ -175,39 +182,39 @@ uvicorn main:app --reload
 Open:
 
 ```text
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000
 ```
 
-Analyze a repository.
+---
 
-Then run:
+## Example Repositories To Test
 
-```bash
-python ai_engine.py
+FastAPI Template
+
+```text
+https://github.com/fastapi/full-stack-fastapi-template
 ```
 
-Optional tools:
+Flask Project
 
-```bash
-python architecture_diagram.py
-
-python documentation_generator.py
-
-python code_review.py
+```text
+https://github.com/miguelgrinberg/flasky
 ```
 
 ---
 
 ## Future Improvements
 
-- Better AI explanations
-- Support more programming languages
+- Support multiple programming languages
 - Export reports as PDF
-- Interactive dashboard
-- One-click deployment
+- Interactive dependency graphs
+- User authentication
+- Repository comparison
+- Dark mode
 
 ---
 
 ## Author
 
-Naveen Karthik
+**Naveen Karthik**
+
