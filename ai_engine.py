@@ -32,7 +32,7 @@ def ask_ai(question):
 
         response = client.chat.completions.create(
 
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
 
             messages=[
 
@@ -118,7 +118,7 @@ Rules:
 
         response = client.chat.completions.create(
 
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
 
             messages=[
 
@@ -172,7 +172,7 @@ Answer simply.
 
         response = client.chat.completions.create(
 
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
 
             messages=[
 
