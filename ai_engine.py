@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-from google import genai
+from groq import Groq
 
 from repo_reader import read_repository
 
@@ -12,11 +12,11 @@ from repo_reader import read_repository
 # ---------------------------
 load_dotenv()
 
-client = genai.Client(
+client = Groq(
 
     api_key=os.getenv(
 
-        "GEMINI_API_KEY"
+        "GROQ_API_KEY"
 
     )
 
@@ -30,19 +30,31 @@ def ask_ai(question):
 
     try:
 
-        response = client.models.generate_content(
+        response = client.chat.completions.create(
 
-            model="gemini-2.5-flash-lite",
+            model="llama-3.3-70b-versatile",
 
-            contents=question
+            messages=[
+
+                {
+
+                    "role": "user",
+
+                    "content": question
+
+                }
+
+            ],
+
+            temperature=0.3
 
         )
 
-        return response.text
+        return response.choices[0].message.content
 
     except Exception as e:
 
-        return f"Gemini Error: {e}"
+        return f"Groq Error: {e}"
 
 
 # ---------------------------
@@ -104,19 +116,31 @@ Rules:
 
     try:
 
-        response = client.models.generate_content(
+        response = client.chat.completions.create(
 
-            model="gemini-2.5-flash-lite",
+            model="llama-3.3-70b-versatile",
 
-            contents=prompt
+            messages=[
+
+                {
+
+                    "role": "user",
+
+                    "content": prompt
+
+                }
+
+            ],
+
+            temperature=0.3
 
         )
 
-        return response.text
+        return response.choices[0].message.content
 
     except Exception as e:
 
-        return f"Gemini Error: {e}"
+        return f"Groq Error: {e}"
 
 
 # ---------------------------
@@ -146,19 +170,31 @@ Answer simply.
 
     try:
 
-        response = client.models.generate_content(
+        response = client.chat.completions.create(
 
-            model="gemini-2.5-flash-lite",
+            model="llama-3.3-70b-versatile",
 
-            contents=prompt
+            messages=[
+
+                {
+
+                    "role": "user",
+
+                    "content": prompt
+
+                }
+
+            ],
+
+            temperature=0.3
 
         )
 
-        return response.text
+        return response.choices[0].message.content
 
     except Exception as e:
 
-        return f"Gemini Error: {e}"
+        return f"Groq Error: {e}"
 
 
 # ---------------------------
